@@ -1,0 +1,7 @@
+.catAnimation {
+  transition: width 2s, height 2s, background-color 2s, transform 0.5s,
+    position 2s, left 0.5s, right 1s, scale 2s, top 0.5s;
+}
+.duratio {
+  transition-duration: 3s;
+}
