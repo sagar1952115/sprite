@@ -1,29 +1,34 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const MotionX = ({ compId }) => {
+const Think = () => {
   const [editing, setEditing] = useState(false);
-  const [steps, setSteps] = useState(10);
-  const [inputWidth, setInputWidth] = useState("3");
+  const [word, setWord] = useState("Hmm...");
+
+  const [inputWidth, setInputWidth] = useState("8");
+
   const activeSprite = useSelector((state) => state.spriteReducer.active);
+
   const handleClick = () => {
-    // console.log(activeSprite);
     if (!editing) {
-      console.log(activeSprite);
-      const el = document.getElementById(`${activeSprite}-div`);
-      var left = el.offsetLeft;
-      console.log(left, parseInt(steps));
-      el.style.position = "relative";
-      el.style.left = `${left + parseInt(steps)}px`;
+      const messageEle = document.getElementById(`${activeSprite}-message-box`);
+      const thinkEle = document.getElementById(`${activeSprite}-think-box1`);
+
+      messageEle.style.display = "block";
+      messageEle.style.position = "relative";
+
+      thinkEle.style.display = "block";
+      thinkEle.style.position = "relative";
+
+      messageEle.innerHTML = word;
     }
   };
-
   return (
     <div
-      className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg cursor-pointer pointer"
       onClick={handleClick}
+      className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg"
     >
-      <span className="pr-2 ">move</span>
+      <span className="pr-2 ">think</span>
 
       <input
         type="text"
@@ -31,22 +36,20 @@ const MotionX = ({ compId }) => {
         placeholder=""
         onFocus={() => setEditing(true)}
         onBlur={() => setEditing(false)}
-        value={steps}
+        value={word}
         style={{
           width: `${inputWidth}ch`,
         }}
         onChange={(e) => {
           setEditing(true);
-          const inputValue = e.target.value.replace(/[^0-9-]/g, "");
-          setSteps(inputValue);
+          const inputValue = e.target.value;
+          setWord(inputValue);
           if (inputValue.length > 2) setInputWidth(inputValue.length + 1);
           setEditing(false);
         }}
       />
-
-      <span className="px-2 ml-2">steps</span>
     </div>
   );
 };
 
-export default MotionX;
+export default Think;

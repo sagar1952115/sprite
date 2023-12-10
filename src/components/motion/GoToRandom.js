@@ -1,11 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const GoToRandom = () => {
+  const activeSprite = useSelector((state) => state.spriteReducer.active);
   const handleClick = () => {
-    // if (!editing) {
-    const el = document.getElementById(`sprite0-div`);
-    //   var left = el.offsetLeft;
-    //   console.log(left, parseInt(steps));
+    const el = document.getElementById(`${activeSprite}-div`);
+
     el.style.position = "relative";
     const randomX = Math.random() * 500;
     const randomY = Math.random() * 500;

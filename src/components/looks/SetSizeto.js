@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const MotionX = ({ compId }) => {
+const SetSizeto = () => {
   const [editing, setEditing] = useState(false);
-  const [steps, setSteps] = useState(10);
-  const [inputWidth, setInputWidth] = useState("3");
+  const [percentage, setPercentage] = useState(100);
+  const [inputWidth, setInputWidth] = useState("4");
   const activeSprite = useSelector((state) => state.spriteReducer.active);
+
   const handleClick = () => {
     // console.log(activeSprite);
     if (!editing) {
-      console.log(activeSprite);
-      const el = document.getElementById(`${activeSprite}-div`);
-      var left = el.offsetLeft;
-      console.log(left, parseInt(steps));
-      el.style.position = "relative";
-      el.style.left = `${left + parseInt(steps)}px`;
+      const svgElement = document.getElementById(`${activeSprite}-svg`);
+
+      const initialWidth = "95.17898101806641";
+      const initialHeight = "100.04156036376953";
+
+      const changedWidth = initialWidth * (percentage / 100);
+      const changedheight = initialHeight * (percentage / 100);
+
+      svgElement.setAttribute("width", changedWidth);
+      svgElement.setAttribute("height", changedheight);
     }
   };
-
   return (
     <div
-      className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg cursor-pointer pointer"
       onClick={handleClick}
+      className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg"
     >
-      <span className="pr-2 ">move</span>
+      <span className="pr-2 ">set size to</span>
 
       <input
         type="text"
@@ -31,22 +35,22 @@ const MotionX = ({ compId }) => {
         placeholder=""
         onFocus={() => setEditing(true)}
         onBlur={() => setEditing(false)}
-        value={steps}
+        value={percentage}
         style={{
           width: `${inputWidth}ch`,
         }}
         onChange={(e) => {
           setEditing(true);
           const inputValue = e.target.value.replace(/[^0-9-]/g, "");
-          setSteps(inputValue);
+          setPercentage(inputValue);
           if (inputValue.length > 2) setInputWidth(inputValue.length + 1);
           setEditing(false);
         }}
       />
 
-      <span className="px-2 ml-2">steps</span>
+      <span className="ml-2 px">%</span>
     </div>
   );
 };
 
-export default MotionX;
+export default SetSizeto;

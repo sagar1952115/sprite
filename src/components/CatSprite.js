@@ -7,6 +7,7 @@ export default function CatSprite({ spriteId }) {
       className="z-0 inline-block transition-all duration-500 ease-in-out cursor-pointer"
     >
       <svg
+        id={`${spriteId}-svg`}
         xmlns="http://www.w3.org/2000/svg"
         width="95.17898101806641"
         height="100.04156036376953"

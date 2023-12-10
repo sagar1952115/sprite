@@ -12,7 +12,7 @@ const TurnAntiClockwise = () => {
 
   const state = useSelector((state) => state.spriteReducer);
   const handleClick = () => {
-    const el = document.getElementById("sprite0");
+    const el = document.getElementById(state.active);
 
     const findActiveSprite = state.spriteList.find(
       (x) => x.id === state.active

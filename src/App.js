@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import MidArea from "./components/MidArea";
 import PreviewArea from "./components/PreviewArea";
 import { DragDropContext } from "react-beautiful-dnd";
+import "./App.css";
 
 export default function App() {
   return (

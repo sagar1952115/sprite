@@ -24,9 +24,22 @@ const spriteSlice = createSlice({
 
       state.spriteList = sprites;
     },
+    addSprite: (state, action) => {
+      let spriteArray = state.spriteList;
+
+      spriteArray.push({
+        id: `sprite${state.spriteList.length}`,
+        angle: 0,
+      });
+
+      state.spriteList = spriteArray;
+    },
+    setActive: (state, action) => {
+      state.active = action.payload;
+    },
   },
 });
 
-export const { setAngleOfSprite } = spriteSlice.actions;
+export const { setAngleOfSprite, addSprite, setActive } = spriteSlice.actions;
 
 export const spriteReducer = spriteSlice.reducer;

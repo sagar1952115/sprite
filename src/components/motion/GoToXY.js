@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const GoToXY = () => {
   const [editing, setEditing] = useState(false);
@@ -6,10 +7,11 @@ const GoToXY = () => {
   const [y, setY] = useState("50");
   const [inputWidthx, setInputWidthx] = useState("3");
   const [inputWidthy, setInputWidthy] = useState("3");
+  const activeSprite = useSelector((state) => state.spriteReducer.active);
 
   const handleClick = () => {
     if (!editing) {
-      const el = document.getElementById(`sprite0-div`);
+      const el = document.getElementById(`${activeSprite}-div`);
       el.style.position = "relative";
 
       el.style.left = `${x}px`;

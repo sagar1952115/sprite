@@ -1,29 +1,37 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const MotionX = ({ compId }) => {
+const ChangeSizeBy = () => {
   const [editing, setEditing] = useState(false);
-  const [steps, setSteps] = useState(10);
+  const [size, setSize] = useState(10);
   const [inputWidth, setInputWidth] = useState("3");
   const activeSprite = useSelector((state) => state.spriteReducer.active);
   const handleClick = () => {
-    // console.log(activeSprite);
     if (!editing) {
-      console.log(activeSprite);
-      const el = document.getElementById(`${activeSprite}-div`);
-      var left = el.offsetLeft;
-      console.log(left, parseInt(steps));
-      el.style.position = "relative";
-      el.style.left = `${left + parseInt(steps)}px`;
+      const svgElement = document.getElementById(`${activeSprite}-svg`);
+      let currentWidth = svgElement.getAttribute("width");
+      let currentHeight = svgElement.getAttribute("height");
+
+      // Convert width and height to integers
+      currentWidth = parseInt(currentWidth);
+      currentHeight = parseInt(currentHeight);
+
+      // Increase the width and height by 10 pixels
+      const newWidth = currentWidth + 10;
+      const newHeight = currentHeight + 10;
+
+      // Set the new width and height
+      svgElement.setAttribute("width", newWidth);
+      svgElement.setAttribute("height", newHeight);
     }
   };
 
   return (
     <div
-      className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg cursor-pointer pointer"
       onClick={handleClick}
+      className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg cursor-pointer"
     >
-      <span className="pr-2 ">move</span>
+      <span className="pr-2 ">change size by</span>
 
       <input
         type="text"
@@ -31,22 +39,20 @@ const MotionX = ({ compId }) => {
         placeholder=""
         onFocus={() => setEditing(true)}
         onBlur={() => setEditing(false)}
-        value={steps}
+        value={size}
         style={{
           width: `${inputWidth}ch`,
         }}
         onChange={(e) => {
           setEditing(true);
           const inputValue = e.target.value.replace(/[^0-9-]/g, "");
-          setSteps(inputValue);
+          setSize(inputValue);
           if (inputValue.length > 2) setInputWidth(inputValue.length + 1);
           setEditing(false);
         }}
       />
-
-      <span className="px-2 ml-2">steps</span>
     </div>
   );
 };
 
-export default MotionX;
+export default ChangeSizeBy;
