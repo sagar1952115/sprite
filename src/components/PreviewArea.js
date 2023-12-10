@@ -50,17 +50,18 @@ export default function PreviewArea() {
               className="absolute"
             >
               <div
-                className="hidden w-auto p-2 mb-2 ml-3 border-2 whitespace-nowrap"
-                id={sprite.id + "-message-box"}
-              ></div>
-              <div
-                className="hidden w-4 h-4 mb-2 ml-3 border-2 rounded-full left-1/2 whitespace-nowrap"
-                id={sprite.id + "-think-box1"}
-              ></div>
-              <div
                 id={`${sprite.id}-div`}
                 className="transition-all duration-500 ease-in-out cursor-pointer "
               >
+                <div
+                  className="hidden w-auto p-2 mb-2 ml-3 border-2 whitespace-nowrap"
+                  id={sprite.id + "-message-box"}
+                ></div>
+                <div
+                  className="hidden w-4 h-4 mb-2 ml-3 border-2 rounded-full left-1/2 whitespace-nowrap"
+                  id={sprite.id + "-think-box1"}
+                ></div>
+
                 <CatSprite spriteId={`${sprite.id}`} />
               </div>
             </div>

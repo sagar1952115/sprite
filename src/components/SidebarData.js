@@ -17,3 +17,7 @@ export const looksComponentTypes = [
   "CHANGE_SIZE_BY",
   "SET_SIZE_TO",
 ];
+
+export const controlComponentTypes = ["REPEAT", "WAIT"];
+
+export const eventComponentTypes = ["THIS_SPRITE_CLICKED"];

@@ -19,20 +19,24 @@ const SpriteList = () => {
       <div className="relative flex flex-wrap">
         {state.spriteList.map((sprite) => {
           return (
+            // <div
+            //   className={`p-1 m-2 ${
+            //     state.active === sprite.id ? "ring-4" : "ring-0"
+            //     // ? " border-yellow-500"
+            //     // : "border-transparent"
+            //   }  rounded-md w-max border-4`}
+            // >
             <div
               key={sprite.id}
-              className={`p-1 m-2 ${
-                state.active === sprite.id
-                  ? " border-yellow-500"
-                  : "border-transparent"
-              } rounded-md w-max border-4`}
+              onClick={() => handleSetSpriteActive(sprite.id)}
+              className={`p-2 m-2 text-lg font-bold text-white ${
+                state.active === sprite.id ? "ring-4 ring-yellow-600" : "ring-0"
+                // ? " border-yellow-500"
+                // : "border-transparent"
+              } bg-yellow-400 rounded-md w-max`}
             >
-              <div
-                onClick={() => handleSetSpriteActive(sprite.id)}
-                className="p-2 font-bold text-white bg-yellow-500 rounded-md w-max"
-              >
-                {sprite.id}
-              </div>
+              {sprite.id}
+              {/* </div> */}
             </div>
           );
         })}
