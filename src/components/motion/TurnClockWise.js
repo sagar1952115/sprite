@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { GiClockwiseRotation } from "react-icons/gi";
 import { setAngleOfSprite } from "../../redux/spriteSlice";
 
-const TurnClockWise = () => {
+const TurnClockWise = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [angle, setAngle] = useState("30");
   const [inputWidth, setInputWidth] = useState("3");
@@ -12,22 +12,25 @@ const TurnClockWise = () => {
 
   const state = useSelector((state) => state.spriteReducer);
   const handleClick = () => {
-    const el = document.getElementById(`${state.active}`);
+    if (!editing) {
+      const el = document.getElementById(`${state.active}`);
 
-    const findActiveSprite = state.spriteList.find(
-      (x) => x.id === state.active
-    );
+      const findActiveSprite = state.spriteList.find(
+        (x) => x.id === state.active
+      );
 
-    if (findActiveSprite) {
-      el.style.transform = `rotate(${
-        findActiveSprite.angle + parseInt(angle)
-      }deg)`;
+      if (findActiveSprite) {
+        el.style.transform = `rotate(${
+          findActiveSprite.angle + parseInt(angle)
+        }deg)`;
+      }
+      dispatch(setAngleOfSprite(findActiveSprite.angle + parseInt(angle)));
     }
-    dispatch(setAngleOfSprite(findActiveSprite.angle + parseInt(angle)));
   };
 
   return (
     <div
+      id={compId}
       className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg"
       onClick={handleClick}
     >

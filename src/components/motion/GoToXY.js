@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const GoToXY = () => {
+const GoToXY = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [x, setX] = useState("50");
   const [y, setY] = useState("50");
@@ -21,6 +21,7 @@ const GoToXY = () => {
 
   return (
     <div
+      id={compId}
       className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg"
       onClick={handleClick}
     >

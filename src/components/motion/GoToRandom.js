@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const GoToRandom = () => {
+const GoToRandom = ({ compId }) => {
   const activeSprite = useSelector((state) => state.spriteReducer.active);
   const handleClick = () => {
     const el = document.getElementById(`${activeSprite}-div`);
@@ -14,11 +14,11 @@ const GoToRandom = () => {
 
     el.style.left = `${randomX}px`;
     el.style.top = `${randomY}px`;
-    // }
   };
 
   return (
     <div
+      id={compId}
       className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg"
       onClick={handleClick}
     >

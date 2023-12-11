@@ -29,7 +29,7 @@ const SpriteList = () => {
             <div
               key={sprite.id}
               onClick={() => handleSetSpriteActive(sprite.id)}
-              className={`p-2 m-2 text-lg font-bold text-white ${
+              className={`px-2 m-2 text-lg font-bold text-white ${
                 state.active === sprite.id ? "ring-4 ring-yellow-600" : "ring-0"
                 // ? " border-yellow-500"
                 // : "border-transparent"

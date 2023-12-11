@@ -8,11 +8,13 @@ const MotionX = ({ compId }) => {
   const activeSprite = useSelector((state) => state.spriteReducer.active);
   const handleClick = () => {
     // console.log(activeSprite);
+    const buttonEle = document.getElementById(compId);
+    const buttonId = buttonEle.parentElement.parentElement.id;
+    // && buttonId !== "mid-area-action"
     if (!editing) {
-      console.log(activeSprite);
       const el = document.getElementById(`${activeSprite}-div`);
+
       var left = el.offsetLeft;
-      console.log(left, parseInt(steps));
       el.style.position = "relative";
       el.style.left = `${left + parseInt(steps)}px`;
     }
@@ -22,6 +24,7 @@ const MotionX = ({ compId }) => {
     <div
       className="flex items-center w-full p-2 font-light text-white bg-blue-500 border rounded-lg cursor-pointer pointer"
       onClick={handleClick}
+      id={compId}
     >
       <span className="pr-2 ">move</span>
 
