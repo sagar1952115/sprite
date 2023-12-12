@@ -10,8 +10,6 @@ const GoToRandom = ({ compId }) => {
     const randomX = Math.random() * 500;
     const randomY = Math.random() * 500;
 
-    console.log(randomX, randomY);
-
     el.style.left = `${randomX}px`;
     el.style.top = `${randomY}px`;
   };

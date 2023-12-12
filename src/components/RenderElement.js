@@ -12,12 +12,10 @@ import Show from "./looks/Show";
 import ChangeSizeBy from "./looks/ChangeSizeBy";
 import SetSizeto from "./looks/SetSizeto";
 import Hide from "./looks/Hide";
-import Repeat from "./control/Repeat";
 import Wait from "./control/Wait";
 import ThisSpriteClicked from "./event/ThisSpriteClicked";
 
 export default function RenderElement(componentEle, compId) {
-  console.log(compId, componentEle);
   let component;
   switch (componentEle) {
     case "MOTION_X":
@@ -59,9 +57,7 @@ export default function RenderElement(componentEle, compId) {
     case "SET_SIZE_TO":
       component = <SetSizeto compId={compId} />;
       break;
-    case "REPEAT":
-      component = <Repeat compId={compId} />;
-      break;
+
     case "WAIT":
       component = <Wait compId={compId} />;
       break;

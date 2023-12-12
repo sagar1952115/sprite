@@ -18,6 +18,6 @@ export const looksComponentTypes = [
   "SET_SIZE_TO",
 ];
 
-export const controlComponentTypes = ["REPEAT", "WAIT"];
+export const controlComponentTypes = ["WAIT"];
 
 export const eventComponentTypes = ["THIS_SPRITE_CLICKED"];

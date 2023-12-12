@@ -11,17 +11,13 @@ import { updateBlockList } from "./redux/spriteSlice";
 export default function App() {
   const state = useSelector((state) => state.spriteReducer);
   const dispatch = useDispatch();
-  console.log(state);
   const onDragEnd = (result) => {
     let element = result.draggableId.split("-")[0];
-
     let oldBlocksList = [...state.midAreaComponentBlocks];
-    // Get source index in present blocks list
     let idx = oldBlocksList.findIndex(
       (x) => x.id === result.source.droppableId
     );
 
-    // If found remove the block from that list
     if (idx > -1) {
       let updatedList = oldBlocksList[idx].elements;
       const newSourceBlockList = [...updatedList];
@@ -31,7 +27,6 @@ export default function App() {
         elements: newSourceBlockList,
       };
 
-      // Update list in redux
       dispatch(
         updateBlockList({
           list: newSourceBlockList,
@@ -40,12 +35,10 @@ export default function App() {
       );
     }
 
-    // Get destination index in present blocks list
     let destIndex = oldBlocksList.findIndex(
       (x) => x.id === result.destination.droppableId
     );
 
-    // If found update the block list
     if (destIndex > -1) {
       let destElementList = oldBlocksList[destIndex].elements;
       const newDestElementList = [...destElementList];
@@ -55,7 +48,18 @@ export default function App() {
         elements: newDestElementList,
       };
 
-      // Update list in redux
+      let eventElementIndex = oldBlocksList[destIndex].elements.findIndex(
+        (element) => element === "THIS_SPRITE_CLICKED"
+      );
+
+      if (eventElementIndex > -1) {
+        const movedElement = oldBlocksList[destIndex].elements.splice(
+          eventElementIndex,
+          1
+        )[0];
+        oldBlocksList[destIndex].elements.unshift(movedElement);
+      }
+
       dispatch(
         updateBlockList({
           list: newDestElementList,

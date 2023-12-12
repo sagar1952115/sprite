@@ -3,14 +3,11 @@ import { useSelector } from "react-redux";
 
 const MotionX = ({ compId }) => {
   const [editing, setEditing] = useState(false);
-  const [steps, setSteps] = useState(10);
-  const [inputWidth, setInputWidth] = useState("3");
   const activeSprite = useSelector((state) => state.spriteReducer.active);
+
+  const [steps, setSteps] = useState("100");
+  const [inputWidth, setInputWidth] = useState(steps.length + 1);
   const handleClick = () => {
-    // console.log(activeSprite);
-    const buttonEle = document.getElementById(compId);
-    const buttonId = buttonEle.parentElement.parentElement.id;
-    // && buttonId !== "mid-area-action"
     if (!editing) {
       const el = document.getElementById(`${activeSprite}-div`);
 
@@ -42,6 +39,7 @@ const MotionX = ({ compId }) => {
           setEditing(true);
           const inputValue = e.target.value.replace(/[^0-9-]/g, "");
           setSteps(inputValue);
+
           if (inputValue.length > 2) setInputWidth(inputValue.length + 1);
           setEditing(false);
         }}

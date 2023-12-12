@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const SayFor = () => {
+const SayFor = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [word, setWord] = useState("Hello!");
   const [duration, setDuration] = useState(2);
@@ -10,7 +10,6 @@ const SayFor = () => {
   const activeSprite = useSelector((state) => state.spriteReducer.active);
 
   const handleClick = () => {
-    console.log(activeSprite);
     if (!editing) {
       const messageEle = document.getElementById(`${activeSprite}-message-box`);
       const thinkEle = document.getElementById(`${activeSprite}-think-box1`);
@@ -30,6 +29,7 @@ const SayFor = () => {
   return (
     <div
       onClick={handleClick}
+      id={compId}
       className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg"
     >
       <span className="pr-2 ">say</span>

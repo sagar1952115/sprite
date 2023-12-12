@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const ChangeSizeBy = () => {
+const ChangeSizeBy = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [size, setSize] = useState(10);
   const [inputWidth, setInputWidth] = useState("3");
@@ -12,15 +12,12 @@ const ChangeSizeBy = () => {
       let currentWidth = svgElement.getAttribute("width");
       let currentHeight = svgElement.getAttribute("height");
 
-      // Convert width and height to integers
       currentWidth = parseInt(currentWidth);
       currentHeight = parseInt(currentHeight);
 
-      // Increase the width and height by 10 pixels
       const newWidth = currentWidth + 10;
       const newHeight = currentHeight + 10;
 
-      // Set the new width and height
       svgElement.setAttribute("width", newWidth);
       svgElement.setAttribute("height", newHeight);
     }
@@ -28,6 +25,7 @@ const ChangeSizeBy = () => {
 
   return (
     <div
+      id={compId}
       onClick={handleClick}
       className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg cursor-pointer"
     >

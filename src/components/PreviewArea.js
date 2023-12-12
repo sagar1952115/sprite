@@ -1,6 +1,5 @@
 import React from "react";
 import CatSprite from "./CatSprite";
-import "./style.css";
 import { useSelector } from "react-redux";
 import SpriteList from "./SpriteList";
 
@@ -15,7 +14,6 @@ export default function PreviewArea() {
     e.preventDefault();
 
     ele = document.getElementById(id);
-    console.log(ele);
 
     position3 = e.clientX;
     position4 = e.clientY;
@@ -37,7 +35,6 @@ export default function PreviewArea() {
     document.onmousemove = null;
   };
 
-  console.log(spriteList);
   return (
     <div className="flex flex-col w-full">
       <div className="flex-none w-full p-2 overflow-y-auto border h-3/4">
@@ -54,7 +51,7 @@ export default function PreviewArea() {
                 className="transition-all duration-500 ease-in-out cursor-pointer "
               >
                 <div
-                  className="hidden w-auto p-2 mb-2 ml-3 border-2 whitespace-nowrap"
+                  className="hidden w-auto p-2 mb-2 ml-3 border-2 rounded-md whitespace-nowrap"
                   id={sprite.id + "-message-box"}
                 ></div>
                 <div

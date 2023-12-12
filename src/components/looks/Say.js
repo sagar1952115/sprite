@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const Say = () => {
+const Say = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [word, setWord] = useState("Hello!");
   const [inputWidth, setInputWidth] = useState("8");
@@ -23,6 +23,7 @@ const Say = () => {
   };
   return (
     <div
+      id={compId}
       onClick={handleClick}
       className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg cursor-pointer"
     >

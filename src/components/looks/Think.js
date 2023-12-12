@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const Think = () => {
+const Think = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [word, setWord] = useState("Hmm...");
 
@@ -25,6 +25,7 @@ const Think = () => {
   };
   return (
     <div
+      id={compId}
       onClick={handleClick}
       className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg"
     >

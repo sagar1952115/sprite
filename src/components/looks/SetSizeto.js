@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-const SetSizeto = () => {
+const SetSizeto = ({ compId }) => {
   const [editing, setEditing] = useState(false);
   const [percentage, setPercentage] = useState(100);
   const [inputWidth, setInputWidth] = useState("4");
   const activeSprite = useSelector((state) => state.spriteReducer.active);
 
   const handleClick = () => {
-    // console.log(activeSprite);
     if (!editing) {
       const svgElement = document.getElementById(`${activeSprite}-svg`);
 
@@ -24,6 +23,7 @@ const SetSizeto = () => {
   };
   return (
     <div
+      id={compId}
       onClick={handleClick}
       className="flex items-center w-full p-2 font-light text-white bg-purple-500 border rounded-lg"
     >

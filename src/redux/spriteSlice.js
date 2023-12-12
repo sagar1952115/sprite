@@ -1,15 +1,19 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   active: "sprite0",
+  buttonData: [
+    { id: "MOTION_X", value: "100" },
+    { id: "MOTION_Y", value: "50" },
+  ],
   spriteList: [{ id: "sprite0", angle: 0 }],
   midAreaComponentBlocks: [
     {
       id: "midAreaBlock-0",
-      elements: ["MOTION_X"],
+      elements: [],
     },
   ],
-  wait: {},
+  waitList: {},
 };
 
 const spriteSlice = createSlice({
@@ -20,7 +24,7 @@ const spriteSlice = createSlice({
       let blockList = state.midAreaComponentBlocks;
       let newList = {
         id: `midAreaBlock-${state.midAreaComponentBlocks.length}`,
-        elements: ["MOTION_X"],
+        elements: [],
       };
 
       blockList.push(newList);
@@ -66,7 +70,21 @@ const spriteSlice = createSlice({
       state.active = action.payload;
     },
     setWaitEvents: (state, action) => {
-      state.wait = action.payload;
+      state.waitList = action.payload;
+    },
+    setButtonValue: (state, action) => {
+      const buttonData = state.buttonData;
+      const button = buttonData.find(
+        (button) => button.id === action.payload.id
+      );
+      const buttonIndex = buttonData.findIndex(
+        (button) => button.id === action.payload.id
+      );
+
+      button.value = action.payload.value;
+      buttonData[buttonIndex] = button;
+
+      state.buttonData = buttonData;
     },
   },
 });
@@ -78,6 +96,7 @@ export const {
   setAngleOfSprite,
   addSprite,
   setActive,
+  setButtonValue,
 } = spriteSlice.actions;
 
 export const spriteReducer = spriteSlice.reducer;
